@@ -1,0 +1,1 @@
+Odpalany z maina
