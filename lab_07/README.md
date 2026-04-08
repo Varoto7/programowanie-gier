@@ -1,4 +1,4 @@
-Lab 06 
+Lab 07
 
 Zrealizowano zagadnienia zawarte w skrypcie
 
