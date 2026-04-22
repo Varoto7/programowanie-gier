@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://c86ws0flfgy31"]
+
+[ext_resource type="Script" uid="uid://bmv5205ybie5r" path="res://path_follow_3d.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dwsptdrv5d7yc" path="res://mesh_instance_3d.gd" id="2_0xm2m"]
+
+[sub_resource type="Curve3D" id="Curve3D_7dm0k"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 0, 0, 0, -20, 0, 0, 0, 0, 0, 0, 0, 0, -30, 0, 0, 0, 0, 0, 0, 0, 0, -40, 0, 0, 0, 0, 0, 0, 0, 0, -50),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ig7tw"]
+
+[node name="Node3D" type="Node3D" unique_id=1041145818]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1378415699]
+transform = Transform3D(-0.052738704, 0.9986072, -0.0015471482, 0.010463461, 0.0021018165, 0.99994284, 0.9985539, 0.05271953, -0.010559741, 0, 2.270156, 0)
+light_energy = 2.475
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1620414213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5080526)
+curve = SubResource("Curve3D_7dm0k")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1110995413]
+script = ExtResource("1_ig7tw")
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D" unique_id=129780136]
+transform = Transform3D(0.22352326, 0.28651556, -0.93163633, 0.014033862, 0.9547748, 0.29699865, 0.9745976, -0.07946056, 0.20939346, -3.35343, 1.2674533, 0.555728)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=37297481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0058798194)
+mesh = SubResource("BoxMesh_7dm0k")
+script = ExtResource("2_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=98778893]
+transform = Transform3D(1, 0, 0, 0, -0.09085856, -0.9958638, 0, 0.9958638, -0.09085856, 1.8218894, 0, -2.595851)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1338165059]
+transform = Transform3D(1, 0, 0, 0, -0.9260087, 0.37750134, 0, -0.37750134, -0.9260087, 0.7257676, -6.1606307, 0.5377377)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D" unique_id=448947580]
+transform = Transform3D(1, 0, 0, 0, -0.09085876, -0.99586403, 0, 0.99586403, -0.09085876, -0.1987133, 4.5942645, -2.1114821)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D/MeshInstance3D" unique_id=1973832887]
+transform = Transform3D(1, 0, 0, 0, -0.0908584, -0.9958638, 0, 0.9958638, -0.0908584, -0.01930523, -3.861496, -5.5969067)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D/MeshInstance3D/MeshInstance3D" unique_id=831243800]
+transform = Transform3D(1, 0, 0, 0, -0.09085861, -0.9958641, 0, 0.9958641, -0.09085861, -0.50180435, -3.6345348, 1.8173752)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1064845274]
+transform = Transform3D(1, 0, 0, 0, -0.09085856, -0.9958638, 0, 0.9958638, -0.09085856, 1.6543975, 0.3001516, -29.521408)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2" unique_id=1287958452]
+transform = Transform3D(1, 0, 0, 0, -0.09085855, -0.9958636, 0, 0.9958636, -0.09085855, -0.08945465, -5.4976864, -0.2854836)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D" unique_id=1455768094]
+transform = Transform3D(1, 0, 0, 0, -0.09085855, -0.99586415, 0, 0.99586415, -0.09085855, 0.1604271, 0.27192354, 4.842991)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D/MeshInstance3D" unique_id=262684364]
+transform = Transform3D(1, 0, 0, 0, -0.09085852, -0.9958638, 0, 0.9958638, -0.09085852, 1.1309624, 5.196148, -4.050453)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D/MeshInstance3D/MeshInstance3D" unique_id=974220299]
+transform = Transform3D(1, 0, 0, 0, -0.09085855, -0.9958637, 0, 0.9958637, -0.09085855, -1.3160267, -1.0785446, -5.4273987)
+mesh = SubResource("CylinderMesh_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D/MeshInstance3D/MeshInstance3D/MeshInstance3D" unique_id=1658991983]
+transform = Transform3D(1, 0, 0, 0, -0.09085855, -0.9958639, 0, 0.9958639, -0.09085855, -1.3160267, -8.09404, 1.3632507)
+mesh = SubResource("CylinderMesh_ig7tw")
