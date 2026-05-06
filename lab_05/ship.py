@@ -1,15 +1,7 @@
 import pyray as rl
 import math
-
-ROT_SPEED = 3.5
-
-THRUST = 250.0
-
-FRICTION = 40.0
-
-MAX_SPEED = 350.0
-
-DEBUG = True
+from config import ROT_SPEED, THRUST, FRICTION, MAX_SPEED, DEBUG, SCREEN_W, SCREEN_H
+from utils import ghost_positions
 
 
 class Ship:
@@ -19,7 +11,7 @@ class Ship:
         self.vx = 0.0
         self.vy = 0.0
         self.angle = 0.0
-
+        self.radius = 15.0  # Promień przybliżony dla ghost renderingu
         self.verts = [(0, -15), (-10, 10), (10, 10)]
         self.is_thrusting = False
 
@@ -62,29 +54,31 @@ class Ship:
         self.x += self.vx * dt
         self.y += self.vy * dt
 
-        screen_w, screen_h = 800, 600
-        if self.x < 0 or self.x > screen_w:
-            self.vx = -self.vx
-            self.x = max(0, min(self.x, screen_w))
-        if self.y < 0 or self.y > screen_h:
-            self.vy = -self.vy
-            self.y = max(0, min(self.y, screen_h))
+    def wrap(self):
+        # Zawijanie dla statku (Zadanie 1)
+        self.x = self.x % SCREEN_W
+        self.y = self.y % SCREEN_H
 
     def draw(self):
-        v_screen = []
-        for vx, vy in self.verts:
-            rx, ry = self.rotate_point(vx, vy, self.angle)
-            v_screen.append(rl.Vector2(self.x + rx, self.y + ry))
+        # Rysowanie na wszystkich pozycjach z uwzględnieniem widm (Zadanie 4)
+        positions = ghost_positions(self.x, self.y, self.radius)
 
-        rl.draw_triangle_lines(v_screen[0], v_screen[1], v_screen[2], rl.RAYWHITE)
-
-        if self.is_thrusting:
-            p_screen = []
-            for vx, vy in [(0, 25), (-5, 12), (5, 12)]:
+        for px, py in positions:
+            v_screen = []
+            for vx, vy in self.verts:
                 rx, ry = self.rotate_point(vx, vy, self.angle)
-                p_screen.append(rl.Vector2(self.x + rx, self.y + ry))
-            rl.draw_triangle_lines(p_screen[0], p_screen[2], p_screen[1], rl.ORANGE)
+                v_screen.append(rl.Vector2(px + rx, py + ry))
 
+            rl.draw_triangle_lines(v_screen[0], v_screen[1], v_screen[2], rl.RAYWHITE)
+
+            if self.is_thrusting:
+                p_screen = []
+                for vx, vy in [(0, 25), (-5, 12), (5, 12)]:
+                    rx, ry = self.rotate_point(vx, vy, self.angle)
+                    p_screen.append(rl.Vector2(px + rx, py + ry))
+                rl.draw_triangle_lines(p_screen[0], p_screen[2], p_screen[1], rl.ORANGE)
+
+        # UI i debug (rysowane tylko raz, niezależnie od ghostów)
         if DEBUG:
             rl.draw_line(int(self.x), int(self.y), int(self.x + self.vx), int(self.y + self.vy), rl.GREEN)
             speed_val = math.hypot(self.vx, self.vy)
