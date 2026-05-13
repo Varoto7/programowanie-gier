@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bingyhyu355hj"]
+
+[ext_resource type="Script" uid="uid://dslwnk8ywpqo0" path="res://target.gd" id="1_t2jmu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2jmu"]
+albedo_color = Color(1, 0.16078432, 0.019607844, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e1yvt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ebp1"]
+
+[node name="Target" type="Node3D" unique_id=350581355]
+script = ExtResource("1_t2jmu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=475933103]
+material_override = SubResource("StandardMaterial3D_t2jmu")
+mesh = SubResource("BoxMesh_e1yvt")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1901692454]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1563542330]
+shape = SubResource("BoxShape3D_5ebp1")
