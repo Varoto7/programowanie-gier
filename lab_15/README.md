@@ -1,0 +1,1 @@
+Error 125 zresetowano commity
