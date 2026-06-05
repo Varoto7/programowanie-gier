@@ -12,6 +12,7 @@ STAN_WYGRANA = 6
 STAN_PRZEGRANA_BRZUCH = 7
 STAN_PRZEGRANA_POWTORKI = 8
 STAN_ANIMACJA_ZNISZCZENIA = 9
+STAN_WIDOK_KOLEKCJI = 10
 
 NAZWY_FIGUREK = [
     "Steve", "Diamond Steve", "Alex", "Gold Alex", "Creeper",
@@ -37,21 +38,24 @@ T = {
         'trash_action': "WYRZUC DO KOSZA",
         'trash': "KOSZ",
         'tutorial_1': "Kliknij figure na szafce aby ja odlozyc",
-        'tutorial_2': "Lub wywal powtorke do kosza. Szybko klikaj w figure aby ja rozwalic!",
+        'tutorial_2': "Lub wywal powtorke do kosza.",
+        'tutorial_3': "Szybko klikaj w figure aby ja rozwalic!",
         'smashed': "FIGURKA ZNISZCZONA!",
         'skip': "(Kliknij, aby pominac)",
         'traveling': "Trwa podroz do sklepu...",
         'victory': "ZWYCIESTWO!",
-        'shelf_full': "Polka zostala zapelniona!",
-        'screenshot': "Zrob screena, aby zapisac swoja kolekcje!",
+        'shelf_full': "Polka zostala zapelniona! Zrob screena kolekcji!",
         'game_over': "GAME OVER",
         'belly': "Bol brzucha z przejedzenia!",
         'dupes': "Nie kupuje tego wiecej, ciagle to samo!",
         'understood': "ZROZUMIANO",
         'event_1': "Promocja 4+4! Dostajesz 8 jajek!",
-        'event_2': "Zostales napadniety! Wracasz tylko z 2 jajkami.",
+        'event_2': "Zostales napadniety! Wracasz z 2 jajkami.",
         'event_3': "Mama wkurzyla sie o kase i wszystko zabrala!",
-        'event_4': "Zapomniales po co poszedles... Wracasz z niczym."
+        'event_4': "Zapomniales po co poszedles... Wracasz z niczym.",
+        'play_again': "ZAGRAJ PONOWNIE",
+        'view_collection': "ZOBACZ KOLEKCJE",
+        'continue_playing': "KONTYNUUJ GRE"
     },
     'en': {
         'title': "Kinder Joy Simulator",
@@ -67,13 +71,13 @@ T = {
         'trash_action': "THROW AWAY",
         'trash': "TRASH",
         'tutorial_1': "Click on a shelf slot to place the figure",
-        'tutorial_2': "Or throw duplicate to trash. Click figure fast to smash it!",
+        'tutorial_2': "Or throw duplicate to trash.",
+        'tutorial_3': "Click figure fast to smash it!",
         'smashed': "FIGURE SMASHED!",
         'skip': "(Click to skip)",
         'traveling': "Traveling to the shop...",
         'victory': "VICTORY!",
-        'shelf_full': "Shelf is fully completed!",
-        'screenshot': "Take a screenshot to save your collection!",
+        'shelf_full': "Shelf is completed! Take a screenshot!",
         'game_over': "GAME OVER",
         'belly': "Stomachache from overeating!",
         'dupes': "Not buying this anymore, always the same!",
@@ -81,6 +85,9 @@ T = {
         'event_1': "4+4 Promo! You get 8 eggs!",
         'event_2': "You got mugged! You return with 2 eggs.",
         'event_3': "Mom got mad about money and took everything!",
-        'event_4': "Forgot why you went... Returned with nothing."
+        'event_4': "Forgot why you went... Returned with nothing.",
+        'play_again': "PLAY AGAIN",
+        'view_collection': "VIEW COLLECTION",
+        'continue_playing': "CONTINUE PLAYING"
     }
 }

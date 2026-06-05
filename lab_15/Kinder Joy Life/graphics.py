@@ -1,20 +1,44 @@
 import pyray as pr
+import math
+import random
+
+GWIAZDY = [(random.randint(0, 800), random.randint(0, 600), random.uniform(1, 2.5)) for _ in range(100)]
 
 
-def draw_clouds(czas):
-    pr.clear_background(pr.Color(135, 206, 235, 255))
-    for i in range(5):
-        x = (czas * 20 + i * 200) % 1000 - 100
-        y = 30 + (i % 3) * 80
-        pr.draw_rectangle(int(x), int(y), 100, 40, pr.WHITE)
-        pr.draw_rectangle(int(x + 20), int(y - 20), 60, 40, pr.WHITE)
+def draw_sky(czas):
+    cykl = czas % 300
+    if cykl < 150:
+        pr.clear_background(pr.Color(135, 206, 235, 255))
+        for i in range(5):
+            x = (czas * 20 + i * 200) % 1000 - 100
+            y = 30 + (i % 3) * 80
+            pr.draw_rectangle(int(x), int(y), 100, 40, pr.WHITE)
+            pr.draw_rectangle(int(x + 20), int(y - 20), 60, 40, pr.WHITE)
+    else:
+        pr.clear_background(pr.Color(10, 10, 30, 255))
+        for x, y, size in GWIAZDY:
+            jasnosc = int(150 + 105 * math.sin(czas * 3 + x))
+            kolor_gwiazdy = pr.Color(255, 255, 255, jasnosc)
+            pr.draw_circle(int(x), int(y), size, kolor_gwiazdy)
+        pr.draw_circle(700, 100, 40, pr.LIGHTGRAY)
+        pr.draw_circle(685, 90, 40, pr.Color(10, 10, 30, 255))
+
+
+def draw_mute_button(x, y, is_muted):
+    pr.draw_rectangle(int(x), int(y), 40, 40, pr.DARKGRAY)
+    pr.draw_rectangle_lines(int(x), int(y), 40, 40, pr.BLACK)
+    pr.draw_circle(int(x + 15), int(y + 25), 5, pr.WHITE)
+    pr.draw_rectangle(int(x + 18), int(y + 10), 2, 15, pr.WHITE)
+    pr.draw_rectangle(int(x + 18), int(y + 10), 10, 2, pr.WHITE)
+    if is_muted:
+        pr.draw_line_ex(pr.Vector2(x + 5, y + 5), pr.Vector2(x + 35, y + 35), 4, pr.RED)
 
 
 def draw_biedronka_anim(czas_pozostaly, nazwa_sklepu):
     x_ludzika = 800 - (czas_pozostaly * 160)
     pr.draw_rectangle(600, 200, 250, 400, pr.YELLOW)
     pr.draw_rectangle(600, 400, 250, 100, pr.RED)
-    pr.draw_text(nazwa_sklepu, 620, 250, 20, pr.BLACK)
+    pr.draw_text(nazwa_sklepu, 620, 250, 24, pr.BLACK)
     draw_minecraft_figure(int(x_ludzika), 350, 0, scale=8)
 
 
@@ -22,8 +46,8 @@ def draw_trash_can(x, y, napis_kosz):
     pr.draw_rectangle(int(x), int(y), 60, 80, pr.DARKGRAY)
     pr.draw_rectangle(int(x - 5), int(y - 10), 70, 10, pr.GRAY)
     pr.draw_rectangle(int(x + 25), int(y - 20), 10, 10, pr.GRAY)
-    szer = pr.measure_text(napis_kosz, 15)
-    pr.draw_text(napis_kosz, int(x + 30 - szer // 2), int(y + 35), 15, pr.WHITE)
+    szer = pr.measure_text(napis_kosz, 18)
+    pr.draw_text(napis_kosz, int(x + 30 - szer // 2), int(y + 35), 18, pr.WHITE)
 
 
 def draw_explosion_effect(x, y, promien):
@@ -36,8 +60,8 @@ def draw_kinder_egg(x, y, width, height, stan="zamkniete"):
     if stan == "zamkniete":
         pr.draw_ellipse(int(x), int(y + height / 6), int(width / 2), int(height / 3), pr.RED)
         pr.draw_ellipse(int(x), int(y - height / 6), int(width / 2), int(height / 3), pr.WHITE)
-        pr.draw_text("KINDER", int(x - 25), int(y - 8), 12, pr.BLACK)
-        pr.draw_text("JOY", int(x - 12), int(y + 8), 15, pr.RED)
+        pr.draw_text("KINDER", int(x - 30), int(y - 10), 16, pr.BLACK)
+        pr.draw_text("JOY", int(x - 18), int(y + 10), 20, pr.RED)
     elif stan == "czekolada":
         pr.draw_ellipse(int(x), int(y), int(width / 2), int(height / 2), pr.WHITE)
         pr.draw_ellipse(int(x), int(y), int(width / 2 - 4), int(height / 2 - 4), pr.BROWN)
@@ -46,7 +70,7 @@ def draw_kinder_egg(x, y, width, height, stan="zamkniete"):
     elif stan == "zabawka":
         pr.draw_ellipse(int(x), int(y), int(width / 2), int(height / 2), pr.WHITE)
         pr.draw_rectangle(int(x - 20), int(y - 15), 40, 30, pr.GOLD)
-        pr.draw_text("?", int(x - 5), int(y - 10), 20, pr.BLACK)
+        pr.draw_text("?", int(x - 8), int(y - 12), 24, pr.BLACK)
 
 
 def draw_minecraft_figure(x, y, fig_id, scale=4):
